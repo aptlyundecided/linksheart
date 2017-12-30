@@ -1,0 +1,15 @@
+{
+  "name": "mac",
+  "version": "1.0.0",
+  "description": "get mac addresses from network, assign mac A and B for heart lights",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Wilson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "network": "^0.4.0"
+  }
+}
