@@ -22,7 +22,9 @@ const cmd = require('node-cmd')
 [*/
 const network_deets = {
     gateway: '0.0.0.0',
-    arp_table: {}
+    arp_table: {},
+    a_side_mac: '',
+    b_side_mac: ''
 }
 /*]
 [|] || ============================================================ ||
@@ -100,29 +102,35 @@ function arp_table_parse (table) {
 }
 /*]
 [|] || ================================ ||
+[|]        Network Scan Function!
 [|] || ================================ ||
 [*/
-
 /*]
-[|] Retrieve the name of the network the raspberry pi is connected to.
+[|] This will be the way to periodically check the network for the set devices.
 [*/
-network.get_gateway_ip(function(err, ip) {
-    if (!err) {
-        network_deets.gateway = ip
-        /*]
-        [|] Run arp -a then parse network details into a javascript object.
-        [*/
-        cmd.get('arp -a', (err, data, stderr) => {
-            if (!err) {
-                network_deets.arp_table = arp_table_parse(data)
-            }
-        })
-    }
-})
+function Scan() {
+    /*]
+    [|] Retrieve the name of the network the raspberry pi is connected to.
+    [*/
+    network.get_gateway_ip(function(err, ip) {
+        if (!err) {
+            network_deets.gateway = ip
+            /*]
+            [|] Run arp -a then parse network details into a javascript object.
+            [*/
+            cmd.get('arp -a', (err, data, stderr) => {
+                if (!err) {
+                    network_deets.arp_table = arp_table_parse(data)
+                }
+            })
+        }
+    })
+}
 /*]
 [|] MODULE
 [*/
 module.exports = {
+    Scan,
     network_deets
 }
 /*]
