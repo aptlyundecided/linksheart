@@ -24,7 +24,8 @@ const network_deets = {
     gateway: '0.0.0.0',
     arp_table: {},
     a_side_mac: '',
-    b_side_mac: ''
+    b_side_mac: '',
+    range: '25'
 }
 /*]
 [|] || ============================================================ ||
@@ -98,6 +99,7 @@ function arp_table_parse (table) {
     /*]
     [|]
     [*/
+    console.log(arp_table)
     return arp_table
 }
 /*]
@@ -114,11 +116,18 @@ function Scan() {
     [*/
     network.get_gateway_ip(function(err, ip) {
         if (!err) {
+            /*]
+            [|] create a string to enter into the command prompt.
+            [*/
+            const scan_string = 'nmap -sP ' + ip + '-' + network_deets.range
+            /*]
+            [|] Retain the gateway of the network the pi is connected to
+            [*/
             network_deets.gateway = ip
             /*]
-            [|] Run arp -a then parse network details into a javascript object.
+            [|] Run nmap Sp then parse network details into a javascript object.
             [*/
-            cmd.get('arp -a', (err, data, stderr) => {
+            cmd.get(scan_string, (err, data, stderr) => {
                 if (!err) {
                     network_deets.arp_table = arp_table_parse(data)
                 }
@@ -131,7 +140,27 @@ function Scan() {
 [*/
 module.exports = {
     Scan,
-    network_deets
+    network_deets,
+    a_side_deets () { 
+        return this.network_deets.a_side_mac
+    },
+    b_side_deets () {
+        return this.network_deets.b_side_mac
+    },
+    ip_addresses () {
+        if (typeof this.network_deets.ip_addresses !== 'undefined') {
+            return this.network_deets.ip_addresses
+        } else {
+            return []
+        }
+    },
+    mac_addresses () {
+        if (typeof this.network_deets.mac_addresses !== 'undefined') {
+            return this.network_deets.mac_addresses
+        } else {
+            return []
+        }
+    }
 }
 /*]
 [E] END
