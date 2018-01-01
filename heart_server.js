@@ -84,9 +84,9 @@ function poll () {
         /*]
         [|]
         [*/
-        if (n === network_module.a_side_deets() === true) {
+        if (n === network_module.a_side_deets()) {
             poll_object.a_side_on = true
-        } else if (n === network_module.b_side_deets() === true) {
+        } else if (n === network_module.b_side_deets()) {
             poll_object.b_side_on = true
         }
     })
@@ -120,6 +120,10 @@ function poll () {
             console.log('why?')
         }
     },poll_object.poll_rate)
+    /*]
+    [|]
+    [*/
+    console.log(poll_object)
 }
 /*]
 [|] || ************************************* ||

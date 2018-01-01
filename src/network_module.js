@@ -23,7 +23,7 @@ const cmd = require('node-cmd')
 const network_deets = {
     gateway: '0.0.0.0',
     arp_table: {},
-    a_side_mac: '',
+    a_side_mac: '28:5A:EB:C4:D6:51',
     b_side_mac: '',
     range: '25'
 }
@@ -65,6 +65,10 @@ function arp_table_parse (table) {
     [*/
     const split_arr = table.split('')
     /*]
+    [|]
+    [*/
+    const gateway_subnet = network_deets.gateway.slice(0, -2)
+    /*]
     [|] Loop through every character in the arp table.
     [*/
     split_arr.forEach((n, i) => {
@@ -79,7 +83,7 @@ function arp_table_parse (table) {
                 /*]
                 [|] Add item to ip address list, if determined to be an IP
                 [*/
-                if (joined.match(ip_regexp()) !== null){
+                if (joined.includes(gateway_subnet) === true){
                     ip_list.push(joined)
                 } else if (joined.match(mac_regexp()) !== null) {
                     mac_list.push(joined)
@@ -99,7 +103,6 @@ function arp_table_parse (table) {
     /*]
     [|]
     [*/
-    console.log(arp_table)
     return arp_table
 }
 /*]
@@ -142,21 +145,21 @@ module.exports = {
     Scan,
     network_deets,
     a_side_deets () { 
-        return this.network_deets.a_side_mac
+        return network_deets.a_side_mac
     },
     b_side_deets () {
-        return this.network_deets.b_side_mac
+        return network_deets.b_side_mac
     },
     ip_addresses () {
-        if (typeof this.network_deets.ip_addresses !== 'undefined') {
-            return this.network_deets.ip_addresses
+        if (typeof network_deets.arp_table.ip_addresses !== 'undefined') {
+            return network_deets.arp_table.ip_addresses
         } else {
             return []
         }
     },
     mac_addresses () {
-        if (typeof this.network_deets.mac_addresses !== 'undefined') {
-            return this.network_deets.mac_addresses
+        if (typeof network_deets.arp_table.mac_addresses !== 'undefined') {
+            return network_deets.arp_table.mac_addresses
         } else {
             return []
         }
