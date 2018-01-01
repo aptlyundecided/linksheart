@@ -163,6 +163,20 @@ module.exports = {
         } else {
             return []
         }
+    },
+    set_a_side_mac (new_mac) {
+        if (typeof new_mac !== 'undefined') {
+            network_deets.a_side_mac = new_mac
+        } else {
+            console.log('new mac for a side is undefined')
+        }
+    },
+    set_b_side_mac (new_mac) {
+        if (typeof new_mac !== 'undefined') {
+            network_deets.b_side_mac = new_mac
+        } else {
+            console.log('new mac for b side is undefined')
+        }
     }
 }
 /*]
