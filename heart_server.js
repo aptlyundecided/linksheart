@@ -35,6 +35,9 @@ app.use(body_parser.json())
 [*/
 /*]
 [|] GPIO Status object
+[|]
+[|] TODO:
+[|] 01: Make a separate module for controlling the GPIO
 [*/
 const GPIO = {
     a_side_on: false,
