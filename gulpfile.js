@@ -6,5 +6,5 @@ gulp.task('make-views', function buildHTML() {
     .pipe(pug({
         // Your options in here. 
     }))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./'))
 })

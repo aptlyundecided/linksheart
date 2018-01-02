@@ -1,0 +1,39 @@
+doctype html
+html
+
+//- Document Head
+head
+    title Links Heart
+    
+    //- CSS links
+    link(rel='stylesheet', href='./dist/vendor/mdl/material.min.css')
+    link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic")
+    link(rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons")
+    //- link(rel='stylesheet', href='')
+
+//- Document Body
+body
+    div(id='heart-app')
+        div(class='mdl-card mdl-shadow--2dp')
+            div(class='mdl-card__title')
+                h2(class='mdl-card__title-text') Heart Side A Configuration!
+            div(class='mdl-card__supporting-text')
+                h3 Instructions
+                p Click the button below to set the device you are viewing this page from, as side A of the heart.
+            div(class='mdl-card__actions mdl-card--border')
+                button(class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                    | Set Device as Side A    
+
+        div(class='mdl-card mdl-shadow--2dp')
+            div(class='mdl-card__title')
+                h2(class='mdl-card__title-text') Heart Side B Configuration!
+            div(class='mdl-card__supporting-text')
+                h3 Instructions
+                p Click the button below to set the device you are viewing this page from, as side B of the heart.
+            div(class='mdl-card__actions mdl-card--border')
+                button(class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                    | Set Device as Side B
+
+    //- JS links
+    script(src='./dist/vendor/mdl/material.min.js')
+    //- script(src='/js/03a7.js')
