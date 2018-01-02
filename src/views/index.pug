@@ -6,10 +6,9 @@ head
     title Links Heart
     
     //- CSS links
-    link(rel='stylesheet', href='./dist/vendor/mdl/material.min.css')
+    //- link(rel='stylesheet', href='./dist/vendor/mdl/material.min.css')
     link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic")
     link(rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons")
-    //- link(rel='stylesheet', href='')
 
 //- Document Body
 body
@@ -21,7 +20,7 @@ body
                 h3 Instructions
                 p Click the button below to set the device you are viewing this page from, as side A of the heart.
             div(class='mdl-card__actions mdl-card--border')
-                button(class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                button(id='side-a' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
                     | Set Device as Side A    
 
         div(class='mdl-card mdl-shadow--2dp')
@@ -36,4 +35,4 @@ body
 
     //- JS links
     script(src='./dist/vendor/mdl/material.min.js')
-    //- script(src='/js/03a7.js')
+    script(src='./src/index.js')
