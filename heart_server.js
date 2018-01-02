@@ -14,6 +14,7 @@
 const express = require('express')
 const path = require('path')
 const body_parser = require('body-parser')
+const jsonfile = require('jsonfile')
 const network_module = require('./src/network_module.js')
 /*]
 [|] || =========================================== ||
@@ -120,10 +121,6 @@ function poll () {
             console.log('why?')
         }
     },poll_object.poll_rate)
-    /*]
-    [|]
-    [*/
-    console.log(poll_object)
 }
 /*]
 [|] || ************************************* ||
@@ -132,6 +129,39 @@ function poll () {
 [*/
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './dist/index.html'))
+})
+/*]
+[|] Read side A Mac address for heart.
+[*/
+app.post('/read-side-a', (req, res) => {
+    res.send(network_module.a_side_deets())
+})
+/*]
+[|] Set side A Mac address for the heart.
+[*/
+app.post('/set-side-a', (req, res) => {
+    network_module.set_a_side_mac(req.body.val)
+    res.send('You\'ve added a new MAC address for side A.')
+})
+/*]
+[|] Read side A Mac address for heart.
+[*/
+app.post('/read-side-b', (req, res) => {
+    res.send(network_module.b_side_deets())
+})
+/*]
+[|] Set side A Mac address for the heart.
+[*/
+app.post('/set-side-b', (req, res) => {
+    const status = {
+        route: 'set-side-b',
+        msg: 'You have added a new MAC address for side B.'
+    }
+    /*]
+    [|]
+    [*/
+    network_module.set_b_side_mac(req.body.val)
+    res.send(JSON.stringify(status))
 })
 /*]
 [|] || ************************************* ||

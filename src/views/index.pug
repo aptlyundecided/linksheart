@@ -6,33 +6,59 @@ head
     title Links Heart
     
     //- CSS links
-    //- link(rel='stylesheet', href='./dist/vendor/mdl/material.min.css')
+    link(rel='stylesheet', href='./vendor/mdl/material.min.css')
     link(rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic")
     link(rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons")
 
 //- Document Body
 body
     div(id='heart-app')
+        //- Heart side A card
         div(class='mdl-card mdl-shadow--2dp')
             div(class='mdl-card__title')
                 h2(class='mdl-card__title-text') Heart Side A Configuration!
             div(class='mdl-card__supporting-text')
                 h3 Instructions
-                p Click the button below to set the device you are viewing this page from, as side A of the heart.
+                h4 Read currently active device
+                p Click the 'Read Side A Device' button to see what MAC address is active
+                    | for that side of the heart.
+                h4 Write MAC to Side A of Heart 
+                p Click the button below to set the MAC of the device you wish to be the 
+                    | active device for side A of the heart.
+                    b You will need to manually enter the MAC for the wifi card of your device.
+                //- Input field for device mac Address
+                form(action="#")
+                    div(class='mdl-textfield mdl-js-textfield' id='side-a-input-box')
+                        input(class="mdl-textfield__input" type="text" id="side-a-input")
+                        label(class="mdl-textfield__label" for="side-a-input") Side A Input
+            //- Actions section of side A card
             div(class='mdl-card__actions mdl-card--border')
-                button(id='side-a' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
-                    | Set Device as Side A    
+                button(id='side-a-read' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                    | Read Side A Device
+                button(id='side-a-set' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                    | Set Device as Side A
 
+        //- Heart side B card
         div(class='mdl-card mdl-shadow--2dp')
             div(class='mdl-card__title')
                 h2(class='mdl-card__title-text') Heart Side B Configuration!
             div(class='mdl-card__supporting-text')
                 h3 Instructions
                 p Click the button below to set the device you are viewing this page from, as side B of the heart.
+                //- Input field for device mac Address
+                form(action="#")
+                    div(class='mdl-textfield mdl-js-textfield' id='side-b-input-box')
+                        input(class="mdl-textfield__input" type="text" id="side-b-input")
+                        label(class="mdl-textfield__label" for="side-b-input") Side B Input
+
+            //- Actions section of side B card
             div(class='mdl-card__actions mdl-card--border')
-                button(class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                button(id='side-b-read' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
+                    | Read Side B Device
+                button(id='side-b-set' class='mdl-button mdl-button--raised mdl-js-button mdl-js-button-ripple-effect')
                     | Set Device as Side B
 
     //- JS links
-    script(src='./dist/vendor/mdl/material.min.js')
-    script(src='./src/index.js')
+    script(src='./vendor/jquery/jquery-3.2.1.min.js')
+    script(src='./vendor/mdl/material.min.js')
+    script(src='./js/index.js')

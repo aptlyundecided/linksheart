@@ -167,15 +167,24 @@ module.exports = {
     set_a_side_mac (new_mac) {
         if (typeof new_mac !== 'undefined') {
             network_deets.a_side_mac = new_mac
+            console.log('New MAC assigned to side A')
         } else {
-            console.log('new mac for a side is undefined')
+            console.log('new MAC for a side is NOT defined')
         }
     },
     set_b_side_mac (new_mac) {
         if (typeof new_mac !== 'undefined') {
+            console.log('New MAC assigned to side B')
             network_deets.b_side_mac = new_mac
         } else {
-            console.log('new mac for b side is undefined')
+            console.log('new MAC for b side is  NOT defined')
+        }
+    },
+    set_network_deets (new_deets) {
+        if (typeof new_deets !== 'undefined') {
+            network_deets = new_deets
+        } else {
+            console.log('new network deets we not defined')
         }
     }
 }
